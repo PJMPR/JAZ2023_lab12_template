@@ -23,16 +23,7 @@ public class DiagnosticsConfiguration {
 
     @PostConstruct
     public void runScheduler(){
-        scheduler.forAction(diagnosticsServiceClient::sendDiagnostics)
-                .useExecutionTimeProvider(Chron.builder()
-                        .start(LocalDateTime.now())
 
-                        .interval(Duration.ofSeconds(5))
-                        .build()
-                        .buildNextTimeExecutionProvider())
-                .onSingleActionCompleted(()->log.info("Diagnostics sent."))
-                .schedule();
-        new Thread(schedulerThread).start();
 
     }
 }
