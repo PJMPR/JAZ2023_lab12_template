@@ -51,7 +51,11 @@ public class Job {
     }
 
     public void execute() {
-        if(this.executionTime==null)return;
+        if(this.executionTime==null) {
+            Scheduler.getInstance().getJobs().remove(this);
+            return;
+        }
+        if(this.executionTime.isAfter(LocalDateTime.now())) return;
         try{
             this.action.executeNotSafeAction();
             this.singleActionCompleted.complete();

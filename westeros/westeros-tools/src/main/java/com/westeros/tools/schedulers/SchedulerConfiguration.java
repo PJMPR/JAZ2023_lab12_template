@@ -11,4 +11,5 @@ public class SchedulerConfiguration {
     public Scheduler scheduler(){
         return Scheduler.getInstance();
     }
+
 }

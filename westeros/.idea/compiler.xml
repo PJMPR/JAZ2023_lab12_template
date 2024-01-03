@@ -12,8 +12,8 @@
         <module name="westeros-data" />
         <module name="westeros-web-api" />
         <module name="westeros-diagnostics-service" />
-        <module name="westeros-movies-client" />
         <module name="westeros-diagnostics-tools" />
+        <module name="westeros-movies-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

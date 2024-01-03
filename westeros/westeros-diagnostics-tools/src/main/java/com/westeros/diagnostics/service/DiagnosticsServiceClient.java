@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 public class DiagnosticsServiceClient implements IDiagnosticsServiceClient{
     @Override
     public void sendDiagnostics() {
-        System.out.println("dzialam");//->wywalić
+        //->napisać implementację
     }
 }

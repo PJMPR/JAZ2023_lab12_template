@@ -1,6 +1,7 @@
 package com.westeros.tools.schedulers;
 
 import com.westeros.tools.schedulers.abstractions.IRunNotSafeAction;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;

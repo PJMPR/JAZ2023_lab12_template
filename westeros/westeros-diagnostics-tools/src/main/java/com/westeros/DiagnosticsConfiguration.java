@@ -1,40 +1,38 @@
-package com.westeros.diagnostics;
+package com.westeros;
 
 import com.westeros.diagnostics.service.IDiagnosticsServiceClient;
 import com.westeros.tools.schedulers.Chron;
 import com.westeros.tools.schedulers.Scheduler;
 import com.westeros.tools.schedulers.SchedulerThread;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-@SpringBootApplication(scanBasePackages = "com.westeros")
+@Configuration
 @RequiredArgsConstructor
-public class DiagnosticsToolsApplication implements CommandLineRunner {
-
+@Slf4j
+public class DiagnosticsConfiguration {
     private final SchedulerThread schedulerThread;
-    private final IDiagnosticsServiceClient diagnosticsClient;
+    private final IDiagnosticsServiceClient diagnosticsServiceClient;
     private final Scheduler scheduler;
 
-
-    public static void main(String[] args) {
-        SpringApplication.run(DiagnosticsToolsApplication.class, args);
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        scheduler.forAction(diagnosticsClient::sendDiagnostics)
+    @PostConstruct
+    public void runScheduler(){
+        scheduler.forAction(diagnosticsServiceClient::sendDiagnostics)
                 .useExecutionTimeProvider(Chron.builder()
                         .start(LocalDateTime.now())
 
-                        .interval(Duration.ofMinutes(5))
+                        .interval(Duration.ofSeconds(5))
                         .build()
                         .buildNextTimeExecutionProvider())
+                .onSingleActionCompleted(()->log.info("Diagnostics sent."))
                 .schedule();
         new Thread(schedulerThread).start();
+
     }
 }
