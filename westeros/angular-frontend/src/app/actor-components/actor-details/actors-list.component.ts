@@ -25,7 +25,22 @@ export class ActorsListComponent implements OnInit {
         data=>{
           this.actors=data;
         },
-        error => console.log(error)
+        error=>{
+          alert(
+            `
+            Z adresu: 
+                http://localhost:8080/api/v1/movies/${this.id}/actors
+            
+                HttP Method GET
+    
+            chcę pobrać listę postaci filmu w obiekcie ActorCharacterDto:
+            {
+
+              characterName: string;
+              actorName: string;
+            }
+            `);}
+          
       )
   }
 

@@ -25,8 +25,22 @@ export class CreateActorComponent implements OnInit {
       data=>{
                     console.log(data);
                     this.router.navigate(['movie-details', this.id]);
-                  },
-        error => console.log(error));
+                  } ,
+                         error=>{
+                    alert(
+                      `
+                      Z adresu: 
+                          http://localhost:8080/api/v1/movies/${this.id}/actors
+                      
+                          HttP Method POST
+              
+                      chcę zapisać postać filmu. 
+                      obiekt ActorCharacterDto:
+                      {
+                        characterName: string;
+                        actorName: string;
+                      }
+                      `);});
   }
 
   ngOnInit() {

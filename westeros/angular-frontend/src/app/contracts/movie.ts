@@ -6,4 +6,5 @@ export class Movie extends MovieSummary{
   overview: string;
   releaseDate: Date;
   runtime: number;
+  languageId:number;
 }

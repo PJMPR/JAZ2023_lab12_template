@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http'
 import {Observable, of, Subject} from 'rxjs';
 import {MovieSummary} from './contracts/movie-summary';
 import {Movie} from "./contracts/movie";
+import { Language } from './contracts/language';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,9 @@ export class MovieService {
 
   getActorsList(movieId:number): Observable<ActorRole[]>{
     return this.httpClient.get<ActorRole[]>(`${this.baseURL}/${movieId}/actors`);
+  }
+
+  getlanguages():Observable<Language[]>{
+    return this.httpClient.get<Language[]>(`${this.baseURL}/languages`);
   }
 }

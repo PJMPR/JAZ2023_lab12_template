@@ -15,7 +15,7 @@
         <tr *ngFor = "let movie of movies" >
             <td> {{ movie.title }} </td>
             <td> {{ movie.homepage }} </td>
-            <td> {{ movie.spokenLanguage }} </td>
+            <td> {{ movie.language }} </td>
             <td>
                 <button (click) = "updateMovie(movie.id)" class = "btn btn-primary"> Update</button>
                 <button (click) = "deleteMovie(movie.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>

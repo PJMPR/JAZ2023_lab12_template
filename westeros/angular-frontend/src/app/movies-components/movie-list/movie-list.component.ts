@@ -21,6 +21,21 @@ export class MovieListComponent implements OnInit {
   private getMovies(){
     this.movieService.getMoviesList().subscribe(data => {
       this.movies = data;
+    },
+    error=>{
+        alert(`
+        z adresu: 
+        HTTP GET http://localhost:8080/api/v1/movies
+
+        potrzeba pobrać listę danych o filmach w postaci obiektu:
+          MovieSummaryDto
+          {
+            id: number;
+            title: string;
+            homepage: string;
+            language: string;
+          }
+        `)
     });
   }
 
@@ -36,6 +51,16 @@ export class MovieListComponent implements OnInit {
     this.movieService.deleteMovie(id).subscribe(data => {
       console.log(data);
       this.getMovies();
-    })
+    },
+    error=>{
+          alert(
+          `
+          Z adresu: 
+              http://localhost:8080/api/v1/movies/${id}
+          
+              HttP Method DELETE
+
+          chcę usunąć film o id ${id}.
+          `);})
   }
 }

@@ -17,12 +17,13 @@
                     <input type="url" class="form-control" id="homepage" [(ngModel)]="movie.homepage"
                            name="homepage">
                   </div>
-
                   <div class="form-group">
                     <label> spokenLanguage</label>
-                    <input type="text" class="form-control" id="spokenLanguage" [(ngModel)]="movie.spokenLanguage"
-                           name="spokenLanguage">
-                  </div>
+                    <select type="text" class="form-control" id="Language" [(ngModel)]="movie.languageId"
+                        name="spokenLanguage">
+                        <option *ngFor="let item of languages" [value]="item.id">{{ item.name }}</option>
+                    </select>
+                </div>
 
 
                   <div class="form-group">
