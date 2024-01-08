@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@RequiredArgsConstructor
 public class DiagnosticsRunner implements IRunDiagnoses {
 
+    private final List<IDiagnose> diagnosticTests;
 
     @Override
     public List<Diagnostics> runAll() {
-        return null;
+        return diagnosticTests.stream().map(x->x.run()).toList();
     }
 }
