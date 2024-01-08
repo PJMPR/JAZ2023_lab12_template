@@ -10,18 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("diagnostics")
-@RequiredArgsConstructor
 public class DiagnosticsController {
-
-    private final IRunDiagnoses runner;
-
-    @GetMapping("check")
-    public  ResponseEntity<DiagnosticsResultsDto> runDiagnostics(){
-        var diagnosticResults = runner.runAll();
-        var result = new DiagnosticsResultsDto();
-        result.setDiagnostics(diagnosticResults);
-        return ResponseEntity.ok(result);
-    }
 
     @GetMapping
     public ResponseEntity<String> checkStatus(){
